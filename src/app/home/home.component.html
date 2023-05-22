@@ -1,0 +1,38 @@
+<p style="font-weight: bold;">
+ Employees Details 
+</p>
+
+<label> Name Search: </label>
+<input type="text" [(ngModel)]="inputVal" /><BR><BR>
+<label #count id="count">Total number of employees: 
+  {{(dmService.employees|namefilter:inputVal).length}}</label>
+   <BR><BR>
+<table class="tableCss">
+  <thead>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Location</th>     
+    <th>Mobile</th>
+    <th>Email</th>
+    <th>Edit</th>     
+    <th>Delete</th>
+  </thead>
+  <tr *ngFor='let emp of dmService.employees|namefilter:inputVal'>
+    <td><a [routerLink]="[emp.id]">{{emp.id}}</a></td>
+
+    <td>{{emp.name}}</td>
+
+    <td>{{emp.location}}</td>
+
+    <td>{{emp.mobile}}</td>
+    
+    <td>{{emp.email}}</td>
+    <td>
+      <button  (click)="editEmpDetails(emp.id)">Edit</button>
+    </td>
+    <td>
+      <button (click)="deleteEmpDetails(emp.id)"
+      style="font-weight: bold; color:Red" >Delete</button>
+    </td>
+  </tr>
+</table>

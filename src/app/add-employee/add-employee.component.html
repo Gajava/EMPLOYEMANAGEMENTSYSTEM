@@ -1,0 +1,38 @@
+<h2 style="font-weight: bold; color:rgb(4, 4, 14)">
+  Add Employee Details 
+</h2>
+
+<div>
+  <ul>
+    <label > ID: </label>
+    <label > {{EmployeeData.id}} </label>
+  </ul>
+  <ul>
+    <label >Name</label>
+    <input  type="text" [(ngModel)]="EmployeeData.name" (change)=validate()/>
+  </ul>
+  <ul>
+    <label >Location</label>
+    <select  [(ngModel)] ="EmployeeData.location" (change)=validate()>
+      <option *ngFor="let loc of dmService.LocList">
+        {{loc}}
+      </option>
+    </select>
+  </ul>
+  <ul>
+    <label >Mobile</label>
+    <input  type="number" [(ngModel)]="EmployeeData.mobile" (change)=validate()/>
+  </ul>
+  <ul>
+    <label >Email</label>
+    <input  type="text" [(ngModel)]="EmployeeData.email" (change)=validate()/>
+  </ul>
+  <ul>
+    <label *ngIf="errorMessage.length>0" style="color:red">{{'*'+errorMessage}}</label>
+  </ul>
+  <ul>
+    <button (click)="Cancel()" style="font-weight: bold; color:blue" >Cancel</button>
+    <button [disabled]="!isValidForm" (click)="addEmployeeDetails(EmployeeData)" style="font-weight: bold; color:blue; margin-left:10px;" >Submit</button>
+  </ul>
+
+</div>
